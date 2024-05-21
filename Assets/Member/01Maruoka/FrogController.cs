@@ -26,14 +26,14 @@ public class FrogController : MonoBehaviour
 
     [SerializeField] private Animator _animator;
 
-    private float _initialScaleX;
+    private float _initialScaleZ;
     private bool IsGrounded => _groundChecker.IsGrounded;
 
     public Vector2 JumpPower => _jumpPower;
 
     private void Start()
     {
-        _initialScaleX = transform.localScale.x;
+        _initialScaleZ = transform.localScale.z;
         _rb = GetComponent<Rigidbody2D>();
         if (_animator)
         {
@@ -97,11 +97,11 @@ public class FrogController : MonoBehaviour
 
         if (_rb.velocity.x > 0.1f)
         {
-            transform.localScale = new Vector3(_initialScaleX, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, _initialScaleZ);
         }
         else if (_rb.velocity.x < -0.1f)
         {
-            transform.localScale = new Vector3(-_initialScaleX, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -_initialScaleZ);
         }
     }
 }
