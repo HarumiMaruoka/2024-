@@ -63,6 +63,9 @@ public class FrogController : MonoBehaviour
         if (Input.GetButtonUp("Jump") && IsGrounded)
         {
             _rb.velocity = _jumpPower;
+
+            _jumpPower.y = 0f;
+            _jumpPower.x = 0f;
         }
 
         float xVelocity = 0f;

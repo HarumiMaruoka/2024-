@@ -14,8 +14,8 @@ public class JumpVectorView : MonoBehaviour
 
         if (_frogController.JumpPower == Vector2.zero)
         {
-            x = 0f;
-            y = 0f;
+            x = _frogController.transform.position.x;
+            y = _frogController.transform.position.y;
         }
         else
         {
