@@ -1706,7 +1706,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.21120627, y: 0.0701014}
-  m_Size: {x: 6, y: 0.2}
+  m_Size: {x: 2.01, y: 0.2}
   m_Direction: 1
 --- !u!114 &7427050317174413460
 MonoBehaviour:
@@ -4947,8 +4947,8 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  _groundCheckRadius: 0.45
-  _groundCheckOffset: {x: 0, y: 0.18}
+  _groundCheckRadius: 0.1
+  _groundCheckOffset: {x: 0, y: -0.1}
 --- !u!1 &7904238890773781724
 GameObject:
   m_ObjectHideFlags: 0
