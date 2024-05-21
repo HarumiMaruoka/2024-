@@ -6,14 +6,14 @@ using UnityEngine;
 public class GroundChecker : MonoBehaviour
 {
     [SerializeField] private LayerMask _groundLayer;
-    [SerializeField] private float _checkDistance = 0.5f;
+    [SerializeField] private float _groundCheckRadius = 0.1f;
+    [SerializeField] private Vector2 _groundCheckOffset = new Vector2(0f, -0.5f);
 
-    private bool _isGrounded;
+    public bool IsGrounded => Physics2D.OverlapCircle((Vector2)transform.position + _groundCheckOffset, _groundCheckRadius, _groundLayer);
 
-    public bool IsGrounded => _isGrounded;
-
-    private void Update()
+    private void OnDrawGizmos()
     {
-        _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, _checkDistance, _groundLayer);
+        Gizmos.color = IsGrounded ? Color.red : Color.green;
+        Gizmos.DrawWireSphere((Vector2)transform.position + _groundCheckOffset, _groundCheckRadius);
     }
 }
