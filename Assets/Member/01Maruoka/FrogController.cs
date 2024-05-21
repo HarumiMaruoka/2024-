@@ -26,15 +26,20 @@ public class FrogController : MonoBehaviour
 
     [SerializeField] private Animator _animator;
 
+    private float _initialScaleX;
     private bool IsGrounded => _groundChecker.IsGrounded;
 
     public Vector2 JumpPower => _jumpPower;
 
     private void Start()
     {
+        _initialScaleX = transform.localScale.x;
         _rb = GetComponent<Rigidbody2D>();
-        _groundChecker.OnGrounded += () => _animator.Play("Idle");
-        _groundChecker.OnJumped += () => _animator.Play("Jump");
+        if (_animator)
+        {
+            _groundChecker.OnGrounded += () => _animator.Play("Idle");
+            _groundChecker.OnJumped += () => _animator.Play("Jump");
+        }
     }
 
     private void Update()
@@ -88,6 +93,15 @@ public class FrogController : MonoBehaviour
         else
         {
             _rb.sharedMaterial = _jumpingPhysicsMaterial2D;
+        }
+
+        if (_rb.velocity.x > 0.1f)
+        {
+            transform.localScale = new Vector3(_initialScaleX, transform.localScale.y, transform.localScale.z);
+        }
+        else if (_rb.velocity.x < -0.1f)
+        {
+            transform.localScale = new Vector3(-_initialScaleX, transform.localScale.y, transform.localScale.z);
         }
     }
 }
