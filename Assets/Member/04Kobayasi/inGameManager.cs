@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InGameManager : MonoBehaviour
+public class InGameManager : SingletonMonoBehavior<InGameManager>
 {
     [SerializeField]
     GameObject _resultPanel;
@@ -32,11 +32,7 @@ public class InGameManager : MonoBehaviour
         }
            // if OnGoal();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        OnGoal();
-    }
-    void OnGoal()
+    public void OnGoal()
     {
         _resultPanel.SetActive(true);
     }

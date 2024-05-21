@@ -6,7 +6,7 @@ public class SingletonMonoBehavior<T> : MonoBehaviour where T : SingletonMonoBeh
 
     private void Awake()
     {
-        if (!Instance) Destroy(gameObject);
+        if (Instance) Destroy(gameObject);
 
         Instance = this as T;
         OnAwake();
