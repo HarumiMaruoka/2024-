@@ -200,8 +200,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+      - m_Target: {fileID: 5421906593495601935}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: LoadSceneIndex
         m_Mode: 3
         m_Arguments:
@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 2427184438251379793}
   - component: {fileID: 7814224598175963585}
   - component: {fileID: 11498147750259457}
+  - component: {fileID: 5421906593495601935}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -315,6 +316,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5421906593495601935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424752194677126036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c68175e800ec454584ce6e7921cca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8306972656853419657
 GameObject:
   m_ObjectHideFlags: 0
