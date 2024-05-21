@@ -26,28 +26,30 @@ public class FrogController : MonoBehaviour
     [SerializeField] private float _wallCollisionFriction;
     [SerializeField] private float _wallCollisionBounciness;
 
-    private PhysicsMaterial2D _physicsMaterial2D;
+    [SerializeField] private PhysicsMaterial2D _groundedPhysicsMaterial2D;
+    [SerializeField] private PhysicsMaterial2D _jumpingPhysicsMaterial2D;
 
-    private bool IsGrounded => _groundChecker.GameObjectsCount > 0;
+    private bool IsGrounded => _groundChecker.IsGrounded;
 
     public Vector2 JumpPower => _jumpPower;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _physicsMaterial2D = _rb.sharedMaterial;
     }
 
     private void Update()
     {
+        Debug.Log(IsGrounded);
+
         // ƒWƒƒƒ“ƒvˆ—
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && IsGrounded)
         {
             _jumpPower.y = _minJumpPowerY;
             _jumpPower.x = 0f;
         }
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump") && IsGrounded)
         {
             _jumpPower.y += _jumpPowerAddSpeed.y * Time.deltaTime;
             if (_jumpPower.y > _maxJumpPowerY) _jumpPower.y = _maxJumpPowerY;
@@ -64,7 +66,7 @@ public class FrogController : MonoBehaviour
         {
             _rb.velocity = _jumpPower;
 
-            _jumpPower.y = 0f;
+            _jumpPower.y = _minJumpPowerY;
             _jumpPower.x = 0f;
         }
 
@@ -82,16 +84,13 @@ public class FrogController : MonoBehaviour
             _rb.velocity = new Vector2(xVelocity, _rb.velocity.y);
         }
 
-
         if (IsGrounded)
         {
-            _physicsMaterial2D.friction = _groundCollisionFriction;
-            _physicsMaterial2D.bounciness = _groundCollisionBounciness;
+            _rb.sharedMaterial = _groundedPhysicsMaterial2D;
         }
         else
         {
-            _physicsMaterial2D.friction = _wallCollisionFriction;
-            _physicsMaterial2D.bounciness = _wallCollisionBounciness;
+            _rb.sharedMaterial = _jumpingPhysicsMaterial2D;
         }
     }
 }

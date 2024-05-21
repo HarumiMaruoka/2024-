@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 5634922}
   - component: {fileID: 5634921}
   - component: {fileID: 5634923}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Frog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,12 @@ MonoBehaviour:
   _maxJumpPowerY: 24
   _maxJumpPowerX: 40
   _jumpPower: {x: 0, y: 0}
-  _physicsMaterial2D: {fileID: 6200000, guid: 89ec34d699ddbf5468f207b7e44a0e18, type: 2}
+  _groundCollisionFriction: 0
+  _groundCollisionBounciness: 0.2
+  _wallCollisionFriction: 0.2
+  _wallCollisionBounciness: 0
+  _groundedPhysicsMaterial2D: {fileID: 6200000, guid: 89ec34d699ddbf5468f207b7e44a0e18, type: 2}
+  _jumpingPhysicsMaterial2D: {fileID: 6200000, guid: 063dae21881f3b64297d0f74b57055ce, type: 2}
 --- !u!1 &279127456
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +571,7 @@ GameObject:
   - component: {fileID: 1065693541}
   - component: {fileID: 1065693543}
   - component: {fileID: 1065693544}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground Checker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +702,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b884155d0b9979e4f8ba5e1fc72c2afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameObjects: []
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  _checkDistance: 0.5
 --- !u!1 &1187413228
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +809,7 @@ GameObject:
   - component: {fileID: 1319398871}
   - component: {fileID: 1319398872}
   - component: {fileID: 1319398873}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Jump Vector View
   m_TagString: Untagged
   m_Icon: {fileID: 0}

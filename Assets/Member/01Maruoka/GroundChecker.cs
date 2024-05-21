@@ -5,17 +5,15 @@ using UnityEngine;
 
 public class GroundChecker : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _gameObjects;
+    [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private float _checkDistance = 0.5f;
 
-    public int GameObjectsCount => _gameObjects.Count;
+    private bool _isGrounded;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public bool IsGrounded => _isGrounded;
+
+    private void Update()
     {
-        _gameObjects.Add(collision.gameObject);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        _gameObjects.Remove(collision.gameObject);
+        _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, _checkDistance, _groundLayer);
     }
 }
