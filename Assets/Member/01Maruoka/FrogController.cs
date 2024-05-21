@@ -21,13 +21,10 @@ public class FrogController : MonoBehaviour
     private Rigidbody2D _rb;
 
     [Header("Physics Material İ’è")]
-    [SerializeField] private float _groundCollisionFriction;
-    [SerializeField] private float _groundCollisionBounciness;
-    [SerializeField] private float _wallCollisionFriction;
-    [SerializeField] private float _wallCollisionBounciness;
-
     [SerializeField] private PhysicsMaterial2D _groundedPhysicsMaterial2D;
     [SerializeField] private PhysicsMaterial2D _jumpingPhysicsMaterial2D;
+
+    [SerializeField] private Animator _animator;
 
     private bool IsGrounded => _groundChecker.IsGrounded;
 
@@ -36,12 +33,12 @@ public class FrogController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _groundChecker.OnGrounded += () => _animator.Play("Idle");
+        _groundChecker.OnJumped += () => _animator.Play("Jump");
     }
 
     private void Update()
     {
-        Debug.Log(IsGrounded);
-
         // ƒWƒƒƒ“ƒvˆ—
         if (Input.GetButtonDown("Jump") && IsGrounded)
         {
