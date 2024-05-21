@@ -16,8 +16,8 @@ public class SceneLoader : MonoBehaviour
     {
         
     }
-    public void LoadSceneIndex(int index)
+    public void LoadSceneName(string name)
     {
-        SceneManager.LoadScene(index);
+        SceneManager.LoadScene(name);
     }
 }
