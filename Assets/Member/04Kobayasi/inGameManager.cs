@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class inGameManager : MonoBehaviour
+public class InGameManager : MonoBehaviour
 {
     [SerializeField]
     GameObject _resultPanel;
@@ -24,6 +24,11 @@ public class inGameManager : MonoBehaviour
         {
             _showMenu = !_showMenu;
             _menuPanel.SetActive(_showMenu);
+            if (_showMenu) 
+            { 
+                Time.timeScale = 0f;
+            }
+            else Time.timeScale = 1f;
         }
            // if OnGoal();
     }
