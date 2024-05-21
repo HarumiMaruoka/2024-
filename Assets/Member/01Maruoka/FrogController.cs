@@ -21,10 +21,10 @@ public class FrogController : MonoBehaviour
     private Rigidbody2D _rb;
 
     [Header("Physics Material ê›íË")]
-    [SerializeField] private float _groundCollisionFriction = 0f;
-    [SerializeField] private float _groundCollisionBounciness = 0f;
-    [SerializeField] private float _wallCollisionFriction = 0.2f;
-    [SerializeField] private float _wallCollisionBounciness = 0.2f;
+    [SerializeField] private float _groundCollisionFriction;
+    [SerializeField] private float _groundCollisionBounciness;
+    [SerializeField] private float _wallCollisionFriction;
+    [SerializeField] private float _wallCollisionBounciness;
 
     private PhysicsMaterial2D _physicsMaterial2D;
 
