@@ -21,27 +21,29 @@ public class FrogController : MonoBehaviour
     private Rigidbody2D _rb;
 
     [Header("Physics Material Ý’è")]
-    [SerializeField] private float _groundCollisionFriction;
-    [SerializeField] private float _groundCollisionBounciness;
-    [SerializeField] private float _wallCollisionFriction;
-    [SerializeField] private float _wallCollisionBounciness;
-
     [SerializeField] private PhysicsMaterial2D _groundedPhysicsMaterial2D;
     [SerializeField] private PhysicsMaterial2D _jumpingPhysicsMaterial2D;
 
+    [SerializeField] private Animator _animator;
+
+    private float _initialScaleZ;
     private bool IsGrounded => _groundChecker.IsGrounded;
 
     public Vector2 JumpPower => _jumpPower;
 
     private void Start()
     {
+        _initialScaleZ = transform.localScale.z;
         _rb = GetComponent<Rigidbody2D>();
+        if (_animator)
+        {
+            _groundChecker.OnGrounded += () => _animator.Play("Idle");
+            _groundChecker.OnJumped += () => _animator.Play("Jump");
+        }
     }
 
     private void Update()
     {
-        Debug.Log(IsGrounded);
-
         // ƒWƒƒƒ“ƒvˆ—
         if (Input.GetButtonDown("Jump") && IsGrounded)
         {
@@ -91,6 +93,15 @@ public class FrogController : MonoBehaviour
         else
         {
             _rb.sharedMaterial = _jumpingPhysicsMaterial2D;
+        }
+
+        if (_rb.velocity.x > 0.1f)
+        {
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, _initialScaleZ);
+        }
+        else if (_rb.velocity.x < -0.1f)
+        {
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -_initialScaleZ);
         }
     }
 }

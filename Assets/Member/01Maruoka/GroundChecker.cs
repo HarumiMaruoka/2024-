@@ -11,9 +11,22 @@ public class GroundChecker : MonoBehaviour
 
     public bool IsGrounded => Physics2D.OverlapCircle((Vector2)transform.position + _groundCheckOffset, _groundCheckRadius, _groundLayer);
 
+    private bool _wasGrounded;
+
+    public event Action OnGrounded;
+    public event Action OnJumped;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = IsGrounded ? Color.red : Color.green;
         Gizmos.DrawWireSphere((Vector2)transform.position + _groundCheckOffset, _groundCheckRadius);
+
+        if (_wasGrounded != IsGrounded)
+        {
+            if (IsGrounded) OnGrounded?.Invoke();
+            else OnJumped?.Invoke();
+        }
+
+        _wasGrounded = IsGrounded;
     }
 }
