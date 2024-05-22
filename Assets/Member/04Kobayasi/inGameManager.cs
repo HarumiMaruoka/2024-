@@ -8,6 +8,8 @@ public class InGameManager : SingletonMonoBehavior<InGameManager>
     [SerializeField]
     GameObject _resultPanel;
     [SerializeField]
+    GameObject _lastResultPanel;
+    [SerializeField]
     GameObject _menuPanel;
     [SerializeField]
     BGMType _BGMType;
