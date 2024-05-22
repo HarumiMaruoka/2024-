@@ -46,6 +46,12 @@ public class FrogController : MonoBehaviour
     {
         // 移動処理
         float xVelocity = 0f;
+        // 移動処理
+        // ジャンプキーが押されてなければ水平方向移動可能。
+        if (!Input.GetButton("Jump"))
+        {
+            xVelocity = Input.GetAxisRaw("Horizontal") * _walkSpeed;
+        }
         // 空中にいるときは水平方向の制御が不可能。
         if (IsGrounded && _rb.velocity.y < 0.01f)
         {
@@ -80,12 +86,6 @@ public class FrogController : MonoBehaviour
             _jumpPower.x = 0f;
         }
 
-        // 移動処理
-        // ジャンプキーが押されてなければ水平方向移動可能。
-        if (!Input.GetButton("Jump"))
-        {
-            xVelocity = Input.GetAxisRaw("Horizontal") * _walkSpeed;
-        }
 
         if (IsGrounded)
         {
