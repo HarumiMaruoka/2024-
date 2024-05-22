@@ -1,8 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class FrogController : MonoBehaviour
@@ -34,6 +30,9 @@ public class FrogController : MonoBehaviour
 
     [Header("アニメーション")]
     [SerializeField] private Animator _animator;
+
+    [Header("Trail")]
+    [SerializeField] private TrailRenderer _trailRenderer;
 
     private float _initialScaleZ;
     private bool IsGrounded => _groundChecker.IsGrounded;
@@ -99,10 +98,12 @@ public class FrogController : MonoBehaviour
         if (IsGrounded)
         {
             _rb.sharedMaterial = _groundedPhysicsMaterial2D;
+            _trailRenderer.gameObject.SetActive(false);
         }
         else
         {
             _rb.sharedMaterial = _jumpingPhysicsMaterial2D;
+            _trailRenderer.gameObject.SetActive(true);
         }
 
         if (_rb.velocity.x > 0.1f)
