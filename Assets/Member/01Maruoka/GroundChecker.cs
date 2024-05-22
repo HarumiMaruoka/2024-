@@ -16,11 +16,8 @@ public class GroundChecker : MonoBehaviour
     public event Action OnLandingSE;
     public event Action OnJumped;
 
-    private void OnDrawGizmos()
+    private void Update()
     {
-        Gizmos.color = IsGrounded ? Color.red : Color.green;
-        Gizmos.DrawWireSphere((Vector2)transform.position + _groundCheckOffset, _groundCheckRadius);
-
         if (_wasGrounded != IsGrounded)
         {
             if (IsGrounded) OnLandingSE?.Invoke();
@@ -28,5 +25,11 @@ public class GroundChecker : MonoBehaviour
         }
 
         _wasGrounded = IsGrounded;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = IsGrounded ? Color.red : Color.green;
+        Gizmos.DrawWireSphere((Vector2)transform.position + _groundCheckOffset, _groundCheckRadius);
     }
 }
