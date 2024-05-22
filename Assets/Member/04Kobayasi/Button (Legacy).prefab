@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7300126991477973343}
   - component: {fileID: 2884878243542438645}
   - component: {fileID: 1982751528237257145}
+  - component: {fileID: 5402368445349224634}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -133,6 +134,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5402368445349224634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2801715843843364622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 191f834ed81e95d41a38459a3fb564f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _se: {fileID: 8300000, guid: e8c81d04411d325428b0a73e034989d3, type: 3}
+  _seVolume: 0.5
 --- !u!1 &3272182737103253491
 GameObject:
   m_ObjectHideFlags: 0

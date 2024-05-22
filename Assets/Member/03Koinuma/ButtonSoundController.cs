@@ -1,9 +1,14 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonSoundController : MonoBehaviour
 {
-    public void PlaySE(AudioClip clip)
+    [SerializeField] private AudioClip _se;
+    [SerializeField] private float _seVolume;
+    
+    private void Awake()
     {
-        AudioManager.Instance.PlaySE(clip);
+        GetComponent<Button>().onClick.AddListener(() => AudioManager.Instance.PlaySE(_se, _seVolume));
     }
 }

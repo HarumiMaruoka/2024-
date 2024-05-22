@@ -21,8 +21,9 @@ public class AudioManager : SingletonMonoBehavior<AudioManager>
         _bgmAudioSource.Play();
     }
 
-    public void PlaySE(AudioClip se)
+    public void PlaySE(AudioClip se, float volume = 1f)
     {
+        _seAudioSource.volume = volume;
         _seAudioSource.PlayOneShot(se);
     }
 }
