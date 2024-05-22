@@ -8,17 +8,14 @@ public class TitelManager : MonoBehaviour
     GameObject _startPanel;
     [SerializeField]
     GameObject _selectPanel;
+    [SerializeField]
+    BGMType _BGMType;
     // Start is called before the first frame update
     void Start()
     {
         _startPanel.SetActive(true);
         _selectPanel.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        AudioManager.Instance.PlayBGM(_BGMType);
     }
     public void SelectScene(GameObject selectScenesPanel)
     {
@@ -29,8 +26,8 @@ public class TitelManager : MonoBehaviour
         }
         else
         {
-            _startPanel.SetActive(true);
-            selectScenesPanel.SetActive(false);
+            selectScenesPanel.SetActive(true);
+            _selectPanel.SetActive(false);
         }
     }
 }
