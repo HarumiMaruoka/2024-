@@ -10,6 +10,7 @@ public class AudioManager : SingletonMonoBehavior<AudioManager>
     protected override void OnAwake()
     {
         DontDestroyOnLoad(gameObject);
+        _bgmAudioSource.loop = true;
     }
 
     public void PlayBGM(BGMType bgmType)
