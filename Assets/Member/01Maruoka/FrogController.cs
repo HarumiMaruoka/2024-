@@ -119,7 +119,10 @@ public class FrogController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
-            if (AudioManager.Instance) AudioManager.Instance.PlaySE(_collisionSE);
+            var max = 3;
+            var rand = UnityEngine.Random.Range(0, max);
+            if (rand % max - 1 == 0)
+                if (AudioManager.Instance) AudioManager.Instance.PlaySE(_collisionSE);
         }
     }
 
