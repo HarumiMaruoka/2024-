@@ -13,7 +13,7 @@ public class GroundChecker : MonoBehaviour
 
     private bool _wasGrounded;
 
-    public event Action OnGrounded;
+    public event Action OnLandingSE;
     public event Action OnJumped;
 
     private void OnDrawGizmos()
@@ -23,7 +23,7 @@ public class GroundChecker : MonoBehaviour
 
         if (_wasGrounded != IsGrounded)
         {
-            if (IsGrounded) OnGrounded?.Invoke();
+            if (IsGrounded) OnLandingSE?.Invoke();
             else OnJumped?.Invoke();
         }
 
