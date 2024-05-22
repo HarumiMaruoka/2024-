@@ -115,13 +115,15 @@ public class FrogController : MonoBehaviour
         }
     }
 
+    // ƒJƒGƒ‹‚ª–Â‚­Šm—¦
+    [SerializeField, Range(1, 10)] private int _quackProbability = 3;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Wall")
         {
-            var max = 3;
-            var rand = UnityEngine.Random.Range(0, max);
-            if (rand % max - 1 == 0)
+            var rand = UnityEngine.Random.Range(0, _quackProbability);
+            if (rand % _quackProbability - 1 == 0)
                 if (AudioManager.Instance) AudioManager.Instance.PlaySE(_collisionSE);
         }
     }
