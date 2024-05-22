@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class JumpVectorView : MonoBehaviour
@@ -9,22 +8,19 @@ public class JumpVectorView : MonoBehaviour
 
     private void Update()
     {
-        float x;
-        float y;
-
         if (_frogController.JumpPower == Vector2.zero)
         {
-            x = _frogController.transform.position.x;
-            y = _frogController.transform.position.y;
+            transform.position = _frogController.transform.position;
         }
         else
         {
-            var angle = Vector2.Angle(_frogController.JumpPower, Vector2.right);
+            var length = _frogController.JumpPower.magnitude;
+            float angle = Vector2.Angle(_frogController.JumpPower, Vector2.right);
 
-            x = _frogController.transform.position.x + Mathf.Cos(Mathf.Deg2Rad * angle) * _radius;
-            y = _frogController.transform.position.y + Mathf.Sin(Mathf.Deg2Rad * angle) * _radius;
+            float x = _frogController.transform.position.x + Mathf.Cos(Mathf.Deg2Rad * angle) * _radius * length * 0.06f;
+            float y = _frogController.transform.position.y + Mathf.Sin(Mathf.Deg2Rad * angle) * _radius * length * 0.06f;
+
+            transform.position = new Vector3(x, y, 0);
         }
-
-        transform.position = new Vector3(x, y, 0);
     }
 }
