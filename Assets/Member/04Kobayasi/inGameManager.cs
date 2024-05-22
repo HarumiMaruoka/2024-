@@ -9,12 +9,15 @@ public class InGameManager : SingletonMonoBehavior<InGameManager>
     GameObject _resultPanel;
     [SerializeField]
     GameObject _menuPanel;
+    [SerializeField]
+    BGMType _BGMType;
     bool _showMenu = false;
     // Start is called before the first frame update
     void Start()
     {
         _resultPanel.SetActive(false);
         _menuPanel.SetActive(false);
+        AudioManager.Instance.PlayBGM(_BGMType);
     }
 
     // Update is called once per frame
@@ -39,5 +42,6 @@ public class InGameManager : SingletonMonoBehavior<InGameManager>
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
 }
