@@ -1729,6 +1729,10 @@ MonoBehaviour:
   _jumpPower: {x: 0, y: 0}
   _groundedPhysicsMaterial2D: {fileID: 6200000, guid: fd23388f22c6ac64abd1a9d2db8e9917, type: 2}
   _jumpingPhysicsMaterial2D: {fileID: 6200000, guid: 10640808880757e41bedaf371cd2e786, type: 2}
+  _jumpSE: {fileID: 8300000, guid: f970827507d724a43b726aadbe98d41a, type: 3}
+  _landingSE: {fileID: 8300000, guid: 0e38d113b5243ff4d824d33a1d9bcd9f, type: 3}
+  _collisionSE: {fileID: 8300000, guid: 011819afabd70d34481d10bf144fadb1, type: 3}
+  _goalSE: {fileID: 8300000, guid: ca61072e8ffbd20459f6d3cdeee80b62, type: 3}
   _animator: {fileID: 4518209506088771522}
 --- !u!1 &2168737548245816435
 GameObject:

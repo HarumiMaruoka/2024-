@@ -1,5 +1,7 @@
 using System;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 
@@ -24,6 +26,13 @@ public class FrogController : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D _groundedPhysicsMaterial2D;
     [SerializeField] private PhysicsMaterial2D _jumpingPhysicsMaterial2D;
 
+    [Header("効果音")]
+    [SerializeField] private AudioClip _jumpSE;
+    [SerializeField] private AudioClip _landingSE;
+    [SerializeField] private AudioClip _collisionSE;
+    [SerializeField] private AudioClip _goalSE;
+
+    [Header("アニメーション")]
     [SerializeField] private Animator _animator;
 
     private float _initialScaleZ;
@@ -37,8 +46,8 @@ public class FrogController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         if (_animator)
         {
-            _groundChecker.OnGrounded += () => _animator.Play("Idle");
-            _groundChecker.OnJumped += () => _animator.Play("Jump");
+            _groundChecker.OnLandingSE += () => { _animator.Play("Idle"); if (AudioManager.Instance) AudioManager.Instance.PlaySE(_landingSE); };
+            _groundChecker.OnJumped += () => { _animator.Play("Jump"); if (AudioManager.Instance) AudioManager.Instance.PlaySE(_jumpSE); };
         }
     }
 
@@ -103,6 +112,22 @@ public class FrogController : MonoBehaviour
         else if (_rb.velocity.x < -0.1f)
         {
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, -_initialScaleZ);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            if (AudioManager.Instance) AudioManager.Instance.PlaySE(_collisionSE);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Goal")
+        {
+            if (AudioManager.Instance) AudioManager.Instance.PlaySE(_goalSE);
         }
     }
 }
